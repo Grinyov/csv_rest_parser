@@ -33,7 +33,7 @@ public class CsvSuggestionWriter {
      */
     public void write(@NonNull String fileName, @NonNull List<CsvSuggestionDto> data){
         try {
-            @Cleanup Writer writer = new PrintWriter(new FileWriter(fileName));
+            @Cleanup Writer writer = new PrintWriter(new FileWriter(fileName), true);
             doWrite(writer, data);
         } catch (IOException e) {
             throw new RuntimeException(e);
