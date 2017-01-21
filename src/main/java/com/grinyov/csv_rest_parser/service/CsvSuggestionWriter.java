@@ -29,7 +29,7 @@ public class CsvSuggestionWriter {
     /*
     Use Lombok's annotation @NonNull instead checking on null
     and annotation @Cleanup - ensure a given resource is automatically cleaned up
-    before the code execution path exits your current scope
+    before the code execution path exits your current scope/
      */
     public void write(@NonNull String fileName, @NonNull List<CsvSuggestionDto> data){
         try {
@@ -40,6 +40,9 @@ public class CsvSuggestionWriter {
         }
     }
 
+    /*
+    Use helper's from jackson-dataformat
+     */
     private void doWrite(@NonNull Writer writer, @NonNull List<CsvSuggestionDto> data) throws IOException{
         csvMapper.writer().with(schema).writeValues(writer).writeAll(data);
     }
