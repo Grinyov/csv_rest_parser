@@ -1,6 +1,7 @@
 package com.grinyov.csv_rest_parser;
 
 import com.google.common.collect.ImmutableList;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -12,6 +13,9 @@ import static java.util.stream.Collectors.toList;
 
 @SpringBootApplication
 public class Application implements CommandLineRunner {
+
+    @Autowired
+    private CsvSuggestionWriter csvSuggestionWriter;
 
     @Override
     public void run(String... args) throws Exception {
@@ -26,7 +30,7 @@ public class Application implements CommandLineRunner {
            Finally, save to file in *.csv format
         */
 
-        csvSuggestWriter.write(fileName, someSiteApiClient.findSuggestionsByCity().stream()
+        csvSuggestionWriter.write(fileName, websiteApiClient.findSuggestionsByCity().stream()
                 .map(csvSuggestionConverter::toCsvSuggestionDto)
                 .collect(collectingAndThen(toList(), ImmutableList::copyOf)));
 
