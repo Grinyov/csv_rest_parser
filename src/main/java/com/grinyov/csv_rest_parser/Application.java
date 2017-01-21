@@ -1,6 +1,7 @@
 package com.grinyov.csv_rest_parser;
 
 import com.google.common.collect.ImmutableList;
+import com.grinyov.csv_rest_parser.service.CsvSuggestionWriter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
