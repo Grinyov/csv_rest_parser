@@ -6,7 +6,6 @@ import com.grinyov.csv_rest_parser.service.WebsiteApiClient;
 import com.google.common.collect.ImmutableList;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.Banner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -45,6 +44,12 @@ public class Application implements CommandLineRunner {
                 .run(args);
     }
 
+    /*
+        FIrstly, apiclient's method call and receive data in the form map.
+        Call method csvSuggestionConverter transform to dto and
+        move to new immutable collection.
+        Finally, save to file in *.csv format
+     */
     @Override
     public void run(String... args) throws Exception {
 
