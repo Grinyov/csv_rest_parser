@@ -1,7 +1,9 @@
 package com.grinyov.csv_rest_parser.dao.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Map;
 
@@ -9,6 +11,8 @@ import java.util.Map;
  * Created by vgrinyov.
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Suggestion {
     @JsonProperty("_id")
     private long id;
@@ -24,7 +28,8 @@ public class Suggestion {
     private long locationId;
     private boolean inEurope;
     private int countryId;
-    private CountryCode countryCode;
+    //private CountryCode countryCode;
+    private String countryCode;
     private boolean coreCountry;
     private long distance;
     private Map<String, String> names;
