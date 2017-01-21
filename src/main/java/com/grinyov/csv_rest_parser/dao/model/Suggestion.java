@@ -3,6 +3,8 @@ package com.grinyov.csv_rest_parser.dao.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
+import java.util.Map;
+
 /**
  * Created by vgrinyov.
  */
