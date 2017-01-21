@@ -1,12 +1,19 @@
 package com.grinyov.csv_rest_parser;
 
 import com.google.common.collect.ImmutableList;
+import com.grinyov.csv_rest_parser.service.CsvSuggestionConverter;
 import com.grinyov.csv_rest_parser.service.CsvSuggestionWriter;
+import com.grinyov.csv_rest_parser.service.WebsiteApiClient;
 import lombok.AllArgsConstructor;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
+import org.springframework.web.client.RestTemplate;
 
+import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
 
 /**
@@ -20,6 +27,13 @@ public class Application implements CommandLineRunner {
     private CsvSuggestionWriter csvSuggestionWriter;
     @Autowired
     private WebsiteApiClient websiteApiClient;
+    @Autowired
+    private CsvSuggestionConverter csvSuggestionConverter;
+
+    @Bean
+    public RestTemplate restTemplate(){
+        return new RestTemplate(new HttpComponentsClientHttpRequestFactory(HttpClientBuilder.create().build()));
+    }
 
     @Override
     public void run(String... args) throws Exception {
@@ -34,7 +48,7 @@ public class Application implements CommandLineRunner {
            Finally, save to file in *.csv format
         */
 
-        csvSuggestionWriter.write(fileName, websiteApiClient.findSuggestionsByCity().stream()
+        csvSuggestionWriter.write(fileName, websiteApiClient.findSuggestionsByCity(cityName).stream()
                 .map(csvSuggestionConverter::toCsvSuggestionDto)
                 .collect(collectingAndThen(toList(), ImmutableList::copyOf)));
 
