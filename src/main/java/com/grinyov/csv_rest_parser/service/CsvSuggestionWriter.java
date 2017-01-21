@@ -3,6 +3,7 @@ package com.grinyov.csv_rest_parser.service;
 
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
+import com.google.common.annotations.VisibleForTesting;
 import com.grinyov.csv_rest_parser.service.dto.CsvSuggestionDto;
 import lombok.Cleanup;
 import lombok.NonNull;
@@ -43,7 +44,8 @@ public class CsvSuggestionWriter {
     /*
     Use helper's from jackson-dataformat
      */
-    private void doWrite(@NonNull Writer writer, @NonNull List<CsvSuggestionDto> data) throws IOException{
+    @VisibleForTesting
+    protected void doWrite(@NonNull Writer writer, @NonNull List<CsvSuggestionDto> data) throws IOException{
         csvMapper.writer().with(schema).writeValues(writer).writeAll(data);
     }
 }
