@@ -1,5 +1,6 @@
 package com.grinyov.csv_rest_parser.dao.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 /**
@@ -21,7 +22,7 @@ public class Suggestion {
     private long locationId;
     private boolean inEurope;
     private int countryId;
-    private String countryCode;
+    private CountryCode countryCode;
     private boolean coreCountry;
     private long distance;
     private Map<String, String> names;
