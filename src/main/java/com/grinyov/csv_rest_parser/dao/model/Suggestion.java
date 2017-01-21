@@ -2,6 +2,7 @@ package com.grinyov.csv_rest_parser.dao.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,6 +12,7 @@ import java.util.Map;
  * Created by vgrinyov.
  */
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Suggestion {
