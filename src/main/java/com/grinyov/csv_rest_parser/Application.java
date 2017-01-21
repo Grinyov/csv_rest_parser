@@ -7,8 +7,10 @@ import com.grinyov.csv_rest_parser.service.WebsiteApiClient;
 import lombok.AllArgsConstructor;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.Banner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
@@ -33,6 +35,12 @@ public class Application implements CommandLineRunner {
     @Bean
     public RestTemplate restTemplate(){
         return new RestTemplate(new HttpComponentsClientHttpRequestFactory(HttpClientBuilder.create().build()));
+    }
+
+    public static void main(String[] args) {
+        new SpringApplicationBuilder(Application.class)
+                .bannerMode(Banner.Mode.LOG)
+                .run(args);
     }
 
     @Override
